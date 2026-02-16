@@ -1,0 +1,201 @@
+{{define "drivers"}}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{.Title}}</title>
+    
+    
+    <link rel="stylesheet" href="/static/header&footer.css">
+    <link rel="stylesheet" href="/static/drivers.css">
+</head>
+<body>
+    
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <a href="/"><img src="/static/formula1-logo.webp" alt="Logo of Formula 1"></a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="/">Home</a></li>
+                <li><a href="/drivers">Drivers</a></li>
+                <li><a href="/teams">Teams</a></li>
+                <li><a href="/favorites">Favorites</a></li>
+                <li><a href="/about">About</a></li>
+            </ul>
+            <div class="search-box">
+                <form action="/search" method="GET">
+                    <input type="text" name="q" placeholder="Search..." required>
+                    <button type="submit">Search</button>
+                </form>
+            </div>
+        </nav>
+    </header>
+    
+    
+    <div class="f1-audio-container">
+        <div class="f1-audio-player">
+            <div>
+                <div class="audio-label">F1 - Theme Build Up & Starting Grid</div>
+                <audio id="f1-audio-player" controls loop>
+                    <source src="/static/F1-Theme-BuildUp&StartingGrid.mp3" type="audio/mpeg">
+                </audio>
+            </div>
+        </div>
+    </div>
+    
+    
+    <main>
+        <div class="container">
+            
+            <div class="drivers-header">
+                <h1>F1 DRIVERS {{.Data.season}}</h1>
+                <p>Find all Formula 1 drivers for the {{.Data.season}} season</p>
+            </div>
+
+            
+            
+            <div class="filters-container">
+                <h2>Filters</h2>
+                <form action="/drivers" method="GET" class="filters-form">
+                    <div class="filter-group">
+                        <label for="team">Team:</label>
+                        <select name="team" id="team">
+                            <option value="">All Teams</option>
+                            {{range .Data.teams}}
+                            <option value="{{.}}" {{if eq . $.Data.teamFilter}}selected{{end}}>{{.}}</option>
+                            {{end}}
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <label for="nationality">Nationality:</label>
+                        <select name="nationality" id="nationality">
+                            <option value="">All Nationalities</option>
+                            {{range .Data.nationalities}}
+                            <option value="{{.}}" {{if eq . $.Data.nationalityFilter}}selected{{end}}>{{.}}</option>
+                            {{end}}
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <label for="driverType">Driver Type:</label>
+                        <select name="driverType" id="driverType">
+                            <option value="">All Types</option>
+                            {{range .Data.driverTypes}}
+                            <option value="{{.}}" {{if eq . $.Data.driverTypeFilter}}selected{{end}}>{{.}}</option>
+                            {{end}}
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <label for="perPage">Drivers per page:</label>
+                        <select name="perPage" id="perPage">
+                            <option value="10" {{if eq .Data.perPage 10}}selected{{end}}>10</option>
+                            <option value="20" {{if eq .Data.perPage 20}}selected{{end}}>20</option>
+                            <option value="30" {{if eq .Data.perPage 30}}selected{{end}}>30</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-actions">
+                        <button type="submit" class="btn-filter">Apply Filters</button>
+                        <a href="/drivers" class="btn-reset">Reset</a>
+                    </div>
+                </form>
+            </div>
+
+            
+            <div class="results-info">
+                <p>Showing {{.Data.startIndex}}-{{.Data.endIndex}} of {{.Data.totalDrivers}} drivers</p>
+            </div>
+
+            
+            {{if .Data.drivers}}
+            <div class="drivers-grid">
+                {{range .Data.drivers}}
+                <a href="/drivers/{{.DriverID}}" class="driver-card-link">
+                    <div class="driver-card">
+                        {{if .Image}}
+                        <div class="driver-image-top">
+                            <img src="{{.Image}}" alt="{{.GivenName}} {{.FamilyName}}">
+                        </div>
+                        {{end}}
+                        <div class="driver-card-header">
+                            <div class="driver-name-info">
+                                <h3>{{.GivenName}}</h3>
+                                <h3 class="driver-lastname">{{.FamilyName}}</h3>
+                            </div>
+                            <span class="driver-number-badge">{{.PermanentNumber}}</span>
+                        </div>
+                        <div class="driver-info">
+                            <p><strong>Team:</strong> {{.Team}}</p>
+                            <p><strong>Nationality:</strong> {{.Nationality}}</p>
+                            <p><strong>Type:</strong> {{.DriverType}}</p>
+                        </div>
+                    </div>
+                </a>
+                {{end}}
+            </div>
+
+            
+            {{if gt .Data.totalPages 1}}
+            <div class="pagination">
+                {{if gt .Data.currentPage 1}}
+                <a href="?page={{sub .Data.currentPage 1}}&perPage={{.Data.perPage}}&team={{.Data.teamFilter}}&nationality={{.Data.nationalityFilter}}&driverType={{.Data.driverTypeFilter}}" class="pagination-btn">Previous</a>
+                {{end}}
+
+                {{range $i := iterate .Data.totalPages}}
+                {{if eq (add $i 1) $.Data.currentPage}}
+                <span class="pagination-current">{{add $i 1}}</span>
+                {{else}}
+                <a href="?page={{add $i 1}}&perPage={{$.Data.perPage}}&team={{$.Data.teamFilter}}&nationality={{$.Data.nationalityFilter}}&driverType={{$.Data.driverTypeFilter}}" class="pagination-btn">{{add $i 1}}</a>
+                {{end}}
+                {{end}}
+
+                {{if lt .Data.currentPage .Data.totalPages}}
+                <a href="?page={{add .Data.currentPage 1}}&perPage={{.Data.perPage}}&team={{.Data.teamFilter}}&nationality={{.Data.nationalityFilter}}&driverType={{.Data.driverTypeFilter}}" class="pagination-btn">Next</a>
+                {{end}}
+            </div>
+            {{end}}
+
+            {{else}}
+            <p class="no-data">No drivers found with the selected filters.</p>
+            {{end}}
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Formula 1 - Season {{.Data.season}}</h3>
+                    <p>Follow all Formula 1 drivers and teams</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Navigation</h4>
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/drivers">Drivers</a></li>
+                        <li><a href="/teams">Teams</a></li>
+                        <li><a href="/favorites">Favorites</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>About</h4>
+                    <ul>
+                        <li><a href="/about">About the project</a></li>
+                        <li><a href="https://api.jolpi.ca/ergast/" target="_blank">API: Ergast F1 API</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Formula 1 - All rights reserved</p>
+            </div>
+        </div>
+    </footer>
+    <script src="/static/audio-persistence.js"></script>
+</body>
+</html>
+{{end}}

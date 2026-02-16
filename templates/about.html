@@ -1,0 +1,314 @@
+{{define "about"}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Formula 1</title>
+    <link rel="stylesheet" href="/static/header&footer.css">
+    <link rel="stylesheet" href="/static/about.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <a href="/"><img src="/static/formula1-logo.webp" alt="Logo of Formula 1"></a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="/">Home</a></li>
+                <li><a href="/drivers">Drivers</a></li>
+                <li><a href="/teams">Teams</a></li>
+                <li><a href="/favorites">Favorites</a></li>
+                <li><a href="/about">About</a></li>
+            </ul>
+            <div class="search-box">
+                <form action="/search" method="GET">
+                    <input type="text" name="q" placeholder="Search..." required>
+                    <button type="submit">Search</button>
+                </form>
+            </div>
+        </nav>
+    </header>
+
+    
+    <div class="f1-audio-container">
+        <div class="f1-audio-player">
+            <div>
+                <div class="audio-label">Carmen - Act I: Overture</div>
+                <audio id="f1-audio-player" controls loop>
+                    <source src="/static/Carmen-Overture.mp3" type="audio/mpeg">
+                </audio>
+            </div>
+        </div>
+    </div>
+
+    <main>
+        <div class="container">
+            <div class="about-header">
+                <h1>ABOUT THIS PROJECT</h1>
+                <p>API - Formula 1 2025</p>
+            </div>
+
+            <section class="about-section">
+                <h2>Project Description</h2>
+                <p>This web application is built as part of the Groupie Tracker project for Ynov. It provides a comprehensive interface to explore Formula 1 drivers and teams for the 2025 season.</p>
+            </section>
+
+            <section class="about-section">
+                <h2>Features</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <h3>Drivers Management</h3>
+                        <p>Browse all F1 drivers with advanced filtering by team, nationality, and driver type. Pagination system for optimal navigation.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Teams Overview</h3>
+                        <p>Explore all F1 teams with detailed information about each constructor and their drivers.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Favorites System</h3>
+                        <p>Add your favorite drivers and teams to a persistent favorites list stored in JSON format.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Search Functionality</h3>
+                        <p>Quickly find drivers and teams using the search feature.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="about-section">
+                <h2>Technical Stack</h2>
+                <div class="tech-stack">
+                    <div class="tech-item">
+                        <h4>Backend</h4>
+                        <ul>
+                            <li>Golang</li>
+                            <li>REST API consumption (Ergast F1 API)</li>
+                            <li>JSON file</li>
+                            <li>Error handling with HTTP status codes</li>
+                        </ul>
+                    </div>
+                    <div class="tech-item">
+                        <h4>Frontend</h4>
+                        <ul>
+                            <li>HTML - Semantic markup</li>
+                            <li>CSS - without frameworks</li>
+                            <li>Go Templates - Server-side rendering</li>
+                            <li>Responsive design</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="about-section">
+                <h2>Constraints & Requirements</h2>
+                <ul class="requirements-list">
+                    <li>REST API exploitation for data retrieval</li>
+                    <li>Complete error management (offline services, HTTP codes, error pages)</li>
+                    <li>Only Golang, HTML, and CSS languages</li>
+                    <li>Go standard libraries only</li>
+                    <li>No HTML/JS/CSS frameworks</li>
+                    <li>User-friendly interface</li>
+                    <li>Filter system (3 cumulative filters)</li>
+                    <li>Pagination system (10/20/30 items per page)</li>
+                    <li>Favorites system with persistence</li>
+                </ul>
+            </section>
+
+            <section class="about-section">
+                <h2>Data Source</h2>
+                <p>This application uses the <a href="https://api.jolpi.ca/ergast/" target="_blank" class="api-link">Ergast F1 API</a> to retrieve Formula 1 data including drivers, teams, and season information.</p>
+            </section>
+
+            <section class="about-section">
+                <div class="faq-container">
+                    <div class="faq-item">
+                        <h2>How did you break down the project? What were the key phases?</h2>
+                        <div class="faq-answer">
+                            <p><strong>Project Breakdown:</strong></p>
+                            <ul>
+                                <li><strong>Phase 1 - Analysis & Setup (Class 1)</strong>
+                                    <ul>
+                                        <li>Exploration of Ergast F1 API</li>
+                                        <li>Data retrieval (drivers.json, constructors.json)</li>
+                                        <li>Go project structure setup</li>
+                                        <li>Configuration of basic routes</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Phase 2 - Backend Core (Class 2-3)</strong>
+                                    <ul>
+                                        <li>Development of controllers (Drivers, Teams, Search)</li>
+                                        <li>Implementation of services (filtering, pagination, search)</li>
+                                        <li>Error handling and HTTP status codes</li>
+                                        <li>Models and data structures</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Phase 3 - Frontend & Templates (Class 4)</strong>
+                                    <ul>
+                                        <li>Creation of HTML templates</li>
+                                        <li>Custom CSS design (responsive, F1 fonts)</li>
+                                        <li>Favorites system</li>
+                                        <li>Audio persistence and player interface</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Phase 4 - Advanced Features (Class 5)</strong>
+                                    <ul>
+                                        <li>Multiple filters (team, nationality, driver type)</li>
+                                        <li>Dynamic pagination</li>
+                                        <li>Unified global search</li>
+                                        <li>Immersive audio effects</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Phase 5 - Polish & Testing (Class 6-7)</strong>
+                                    <ul>
+                                        <li>Browser compatibility tests</li>
+                                        <li>Performance optimizations</li>
+                                        <li>Documentation and README</li>
+                                        <li>Implementation of constraints</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+            </section>
+            <section class="about-section">
+                    <div class="faq-item">
+                        <h2>How did you distribute tasks? Did you use a particular strategy?</h2>
+                        <div class="faq-answer">
+                            <p><strong>Task Distribution Strategy:</strong></p>
+                            <p><em>Individual project - Complete autonomous work</em></p>
+                            <p>Although this is a solo project, I adopted an <strong>iterative short-sprint approach</strong>:</p>
+                            <ul>
+                                <li><strong>Personal Kanban Approach:</strong>
+                                    <ul>
+                                        <li>Todo → In Progress → Done for each feature</li>
+                                        <li>Regular Git commits to track progress</li>
+                                        <li>Daily checkpoints on objectives</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Code Modularity:</strong>
+                                    <ul>
+                                        <li>Clear separation of concerns (Controllers, Services, Models)</li>
+                                        <li>Maximum function reusability</li>
+                                        <li>Easy maintenance and extension</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Pairing with AI Tools:</strong>
+                                    <ul>
+                                        <li>Assisted code review to detect bugs</li>
+                                        <li>Brainstorming on optimizations</li>
+                                        <li>Documentation and explanations</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+            </section>
+            <section class="about-section">
+                    <div class="faq-item">
+                        <h2>How did you manage your time? Did you define priorities?</h2>
+                        <div class="faq-answer">
+                            <p><strong>Time Management and Priorities:</strong></p>
+                            <ul>
+                                <li>Controllers, Services, basic templates (40%)</li>
+                                <li>Filters, pagination, search, advanced CSS (30%)</li>
+                                <li>Project setup, API consumption, basic routes (20%)</li>
+                                <li>Immersive audio, animations, polish (10%)</li>
+                            </ul>
+                        </div>
+                    </div>
+            </section>
+            <section class="about-section">
+                    <div class="faq-item">
+                        <h2>What documentation strategy did you adopt?</h2>
+                        <div class="faq-answer">
+                            <p><strong>Multi-level Documentation Strategy:</strong></p>
+                            <ul>
+                                <li><strong>Inline Documentation (Code):</strong>
+                                    <ul>
+                                        <li>Comments in French throughout Go code</li>
+                                        <li>Explicit variable names</li>
+                                        <li>Documentation of public functions</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Technical Documentation (README.md):</strong>
+                                    <ul>
+                                        <li>Project overview</li>
+                                        <li>All routes detailed (table format)</li>
+                                        <li>Exploited API endpoints (Ergast)</li>
+                                        <li>Installation/launch instructions</li>
+                                        <li>Architecture and data flow</li>
+                                    </ul>
+                                </li>
+                                <li><strong>User Documentation:</strong>
+                                    <ul>
+                                        <li>Integrated About page (features, tech stack)</li>
+                                        <li>FAQ project management</li>
+                                        <li>Intuitive and user-friendly interface</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Resources & Learning:</strong>
+                                    <ul>
+                                        <li>Archiving of references (API docs, tutorials)</li>
+                                        <li>Notes on architectural decisions</li>
+                                        <li>GitHub issues to track bugs/features</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+            </section>
+            <section class="about-section">
+                    <div class="faq-item">
+                        <h2>Summary of Achievements</h2>
+                        <div class="faq-answer">
+                            <ul>
+                                <li><strong>Architecture:</strong> Clean and maintainable</li>
+                                <li><strong>Zero Dependencies:</strong> Go stdlib only</li>
+                                <li><strong>Testing:</strong> Features fully tested</li>
+                                <li><strong>Error Handling:</strong> Robust error management</li>
+                                <li><strong>Performance:</strong> Optimized pagination and filtering</li>
+                                <li><strong>Interface:</strong> Responsive and immersive interface</li>
+                                <li><strong>Code Quality:</strong> Readability and maintainability prioritized</li>
+                                <li><strong>Documentation:</strong> Complete and accessible</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Formula 1 - Season 2025</h3>
+                    <p>Follow all Formula 1 drivers and teams</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Navigation</h4>
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/drivers">Drivers</a></li>
+                        <li><a href="/teams">Teams</a></li>
+                        <li><a href="/favorites">Favorites</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>About</h4>
+                    <ul>
+                        <li><a href="/about">About the project</a></li>
+                        <li><a href="https://api.jolpi.ca/ergast/" target="_blank">API: Ergast F1 API</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Formula 1 - All rights reserved</p>
+            </div>
+        </div>
+    </footer>
+    <script src="/static/audio-persistence.js"></script>
+</body>
+</html>
+{{end}}

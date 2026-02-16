@@ -1,0 +1,184 @@
+{{define "drivers-detail"}}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{.Driver.GivenName}} {{.Driver.FamilyName}} - F1 Drivers</title>
+    <link rel="stylesheet" href="/static/header&footer.css">
+    <link rel="stylesheet" href="/static/drivers-detail.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar" style="--team-color: {{if .Team}}{{.Team.TeamColor}}{{else}}#e10600{{end}};">
+            <div class="container">
+                <a href="/"><img src="/static/formula1-logo.webp" alt="Logo of Formula 1"></a>
+            </div>
+            <ul class="nav-menu">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/drivers">Drivers</a></li>
+                    <li><a href="/teams">Teams</a></li>
+                    <li><a href="/favorites">Favorites</a></li>
+                    <li><a href="/about">About</a></li>
+            </ul>
+            <div class="search-box">
+                <form action="/search" method="GET">
+                    <input type="text" name="q" placeholder="Search..." required>
+                    <button type="submit">Search</button>
+                </form>
+            </div>
+        </nav>
+    </header>
+
+    
+    <div class="f1-audio-container">
+        <div class="f1-audio-player">
+            <div>
+                <div class="audio-label">F1 - Theme Build Up & Starting Grid</div>
+                <audio id="f1-audio-player" controls loop>
+                    <source src="/static/F1-Theme-BuildUp&StartingGrid.mp3" type="audio/mpeg">
+                </audio>
+            </div>
+        </div>
+    </div>
+
+    
+    <section class="hero driver-hero" style="--team-color: {{if .Team}}{{.Team.TeamColor}}{{else}}#e10600{{end}};">
+        <div class="hero-content">
+            <div class="driver-image-container">
+                <img src="{{.Driver.Image}}" alt="{{.Driver.GivenName}} {{.Driver.FamilyName}}" class="driver-main-image">
+            </div>
+            
+            <div class="stripes-container">
+                <div class="stripe"></div>
+            </div>
+            
+            <div class="driver-number-large">{{.Driver.PermanentNumber}}</div>
+            
+            <h1 class="driver-name-large">
+                <span class="driver-firstname">{{.Driver.GivenName}}</span>
+                <span class="driver-lastname">{{.Driver.FamilyName}}</span>
+            </h1>
+            
+            {{if .Team}}
+            <div class="team-info-hero">
+                <img src="{{.Team.Icon}}" alt="{{.Team.Name}} Logo" class="team-logo-small">
+                <span class="team-name-hero">{{.Team.Name}}</span>
+            </div>
+            {{end}}
+
+            
+            <div class="favorite-button-container">
+                {{if .isFavorite}}
+                <form action="/remove-favorite" method="POST">
+                    <input type="hidden" name="type" value="driver">
+                    <input type="hidden" name="id" value="{{.Driver.DriverID}}">
+                    <input type="hidden" name="returnUrl" value="/drivers/{{.Driver.DriverID}}">
+                    <button type="submit" class="btn-favorite active">★ Remove from Favorites</button>
+                </form>
+                {{else}}
+                <form action="/add-favorite" method="POST">
+                    <input type="hidden" name="type" value="driver">
+                    <input type="hidden" name="id" value="{{.Driver.DriverID}}">
+                    <input type="hidden" name="returnUrl" value="/drivers/{{.Driver.DriverID}}">
+                    <button type="submit" class="btn-favorite">☆ Add to Favorites</button>
+                </form>
+                {{end}}
+            </div>
+        </div>
+    </section>
+
+    
+    <section class="driver-info-section" style="--team-color: {{if .Team}}{{.Team.TeamColor}}{{else}}#e10600{{end}};">
+        <div class="container">
+            <h2 class="section-title">DRIVER INFORMATION</h2>
+            
+            <div class="info-grid">
+                <div class="info-card">
+                    <div class="info-label">Permanent Number</div>
+                    <div class="info-value">{{.Driver.PermanentNumber}}</div>
+                </div>
+                
+                <div class="info-card">
+                    <div class="info-label">Code</div>
+                    <div class="info-value">{{.Driver.Code}}</div>
+                </div>
+                
+                <div class="info-card">
+                    <div class="info-label">Nationality</div>
+                    <div class="info-value">{{.Driver.Nationality}}</div>
+                </div>
+                
+                <div class="info-card">
+                    <div class="info-label">Date of Birth</div>
+                    <div class="info-value">{{.Driver.DateOfBirth}}</div>
+                </div>
+                
+                <div class="info-card">
+                    <div class="info-label">Team</div>
+                    <div class="info-value">{{.Driver.Team}}</div>
+                </div>
+                
+                <div class="info-card">
+                    <div class="info-label">Driver Type</div>
+                    <div class="info-value">{{.Driver.DriverType}}</div>
+                </div>
+            </div>
+
+            {{if .Team}}
+            <div class="team-card-section">
+                <h3>Team Details</h3>
+                <a href="/teams/{{.Team.ConstructorID}}" class="team-detail-card">
+                    <div class="team-card-content">
+                        <div class="team-card-info">
+                            <img src="{{.Team.Icon}}" alt="{{.Team.Name}}" class="team-icon">
+                            <div>
+                                <h4>{{.Team.Name}}</h4>
+                                <p>{{.Team.Nationality}}</p>
+                            </div>
+                        </div>
+                        {{if .Team.Image}}
+                        <div class="team-car-small">
+                            <img src="{{.Team.Image}}" alt="{{.Team.Name}} car">
+                        </div>
+                        {{end}}
+                    </div>
+                </a>
+            </div>
+            {{end}}
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Formula 1 - Season {{.season}}</h3>
+                    <p>Follow all Formula 1 drivers and teams</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Navigation</h4>
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/drivers">Drivers</a></li>
+                        <li><a href="/teams">Teams</a></li>
+                        <li><a href="/favorites">Favorites</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>About</h4>
+                    <ul>
+                        <li><a href="/about">About the project</a></li>
+                        <li><a href="https://api.jolpi.ca/ergast/" target="_blank">API: Ergast F1 API</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Formula 1 - All rights reserved</p>
+            </div>
+        </div>
+    </footer>
+    <script src="/static/audio-persistence.js"></script>
+</body>
+</html>
+{{end}}

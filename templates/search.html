@@ -1,0 +1,160 @@
+{{define "search"}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results - Formula 1</title>
+    <link rel="stylesheet" href="/static/header&footer.css">
+    <link rel="stylesheet" href="/static/search.css">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <a href="/"><img src="/static/formula1-logo.webp" alt="Logo of Formula 1"></a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="/">Home</a></li>
+                <li><a href="/drivers">Drivers</a></li>
+                <li><a href="/teams">Teams</a></li>
+                <li><a href="/favorites">Favorites</a></li>
+                <li><a href="/about">About</a></li>
+            </ul>
+            <div class="search-box">
+                <form action="/search" method="GET">
+                    <input type="text" name="q" placeholder="Search..." value="{{.Data.query}}" required>
+                    <button type="submit">Search</button>
+                </form>
+            </div>
+        </nav>
+    </header>
+    
+    
+    <div class="f1-audio-container">
+        <div class="f1-audio-player">
+            <div>
+                <div class="audio-label">F1 - Theme Build Up & Starting Grid</div>
+                <audio id="f1-audio-player" controls loop autoplay>
+                    <source src="/static/F1-Theme-BuildUp&StartingGrid.mp3" type="audio/mpeg">
+                </audio>
+            </div>
+        </div>
+    </div>
+    
+    <main>
+        <div class="container">
+            <div class="teams-header">
+                <h1>SEARCH RESULTS</h1>
+                {{if .Data.query}}
+                <p>Results for "{{.Data.query}}"</p>
+                {{end}}
+            </div>
+
+            {{if or .Data.drivers .Data.constructors}}
+                
+                {{if .Data.drivers}}
+                <section class="search-section">
+                    <h2 class="search-section-title">Drivers ({{len .Data.drivers}})</h2>
+                    <div class="drivers-grid">
+                        {{range .Data.drivers}}
+                        <a href="/drivers/{{.DriverID}}" class="driver-card-link">
+                            <div class="driver-card">
+                                {{if .Image}}
+                                <div class="driver-image-container">
+                                    <img src="{{.Image}}" alt="{{.GivenName}} {{.FamilyName}}">
+                                </div>
+                                {{end}}
+                                <h3>{{.GivenName}} {{.FamilyName}}</h3>
+                                <p><strong>Number:</strong> {{.PermanentNumber}}</p>
+                                <p><strong>Team:</strong> {{.Team}}</p>
+                                <p><strong>Nationality:</strong> {{.Nationality}}</p>
+                                <p><strong>Date of Birth:</strong> {{.DateOfBirth}}</p>
+                            </div>
+                        </a>
+                        {{end}}
+                    </div>
+                </section>
+                {{end}}
+
+                {{if .Data.constructors}}
+                <section>
+                    <h2 class="search-section-title">Teams ({{len .Data.constructors}})</h2>
+                    <div class="teams-grid-f1">
+                        {{range .Data.constructors}}
+                        <a href="/teams/{{.ConstructorID}}" class="team-link">
+                            <div class="team-card-f1" style="--team-color: {{.TeamColor}};">
+                                <div class="team-card-header">
+                                    <h2>{{.Name}}</h2>
+                                    {{if .Icon}}
+                                    <div class="team-logo">
+                                        <img src="{{.Icon}}" alt="{{.Name}} logo">
+                                    </div>
+                                    {{end}}
+                                </div>
+                                
+                                {{if .Image}}
+                                <div class="team-car">
+                                    <img src="{{.Image}}" alt="{{.Name}} car">
+                                </div>
+                                {{end}}
+                                
+                                <div class="team-info">
+                                    <p><strong>Nationality:</strong> {{.Nationality}}</p>
+                                </div>
+                            </div>
+                        </a>
+                        {{end}}
+                    </div>
+                </section>
+                {{end}}
+
+            {{else}}
+                <div class="no-data">
+                    <p>No results found for "{{.Data.query}}"</p>
+                    <p class="search-help-text">Try searching by:</p>
+                    <ul class="search-suggestions">
+                        <li>Driver name (e.g., "Hamilton", "Verstappen")</li>
+                        <li>Team name (e.g., "Ferrari", "Mercedes")</li>
+                        <li>Nationality (e.g., "British", "Dutch")</li>
+                        <li>Driver number (e.g., "44", "33")</li>
+                    </ul>
+                </div>
+            {{end}}
+        </div>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Formula 1 - Season {{.Data.season}}</h3>
+                    <p>Follow all Formula 1 drivers and teams</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Navigation</h4>
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/drivers">Drivers</a></li>
+                        <li><a href="/teams">Teams</a></li>
+                        <li><a href="/favorites">Favorites</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>About</h4>
+                    <ul>
+                        <li><a href="/about">About the project</a></li>
+                        <li><a href="https://api.jolpi.ca/ergast/" target="_blank">API: Ergast F1 API</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Formula 1 - All rights reserved</p>
+            </div>
+        </div>
+    </footer>
+    <script src="/static/audio-persistence.js"></script>
+</body>
+</html>
+{{end}}

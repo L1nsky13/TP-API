@@ -1,0 +1,223 @@
+@font-face {
+    font-family: 'font-f1-black';
+    src: url('./Formula1-Black.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'font-f1-italic';
+    src: url('./Formula1-Italic.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'font-f1-bold_web';
+    src: url('./Formula1-Bold_web.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'font-f1-bold-4';
+    src: url('./Formula1-Bold-4.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'font-f1-Regular-1';
+    src: url('./Formula1-Regular-1.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'font-f1-Wide';
+    src: url('./Formula1-Wide.ttf') format('truetype');
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'font-f1-Regular-1', Arial, sans-serif;
+    line-height: 1.6;
+    color: #ffffff;
+    background: linear-gradient(135deg, #15151E 0%, #303037 100%);
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+main {
+    padding: 40px 0;
+    min-height: calc(100vh - 400px);
+}
+
+.favorites-header {
+    text-align: center;
+    margin: 40px 0 30px;
+}
+
+.favorites-header h1 {
+    font-family: 'font-f1-Wide', sans-serif;
+    font-size: 3rem;
+    color: #e10600;
+    margin-bottom: 10px;
+}
+
+.favorites-header p {
+    font-size: 1.2rem;
+    color: #cccccc;
+}
+
+.favorites-section {
+    margin: 40px 0;
+}
+
+.favorites-section h2 {
+    font-family: 'font-f1-bold-4', sans-serif;
+    font-size: 2rem;
+    color: #ffffff;
+    margin-bottom: 20px;
+    border-bottom: 3px solid #e10600;
+    padding-bottom: 10px;
+}
+
+.favorites-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.favorite-item {
+    position: relative;
+}
+
+.favorite-card {
+    display: block;
+    text-decoration: none;
+    background: linear-gradient(145deg, #1a1a24 0%, #252530 100%);
+    border-radius: 15px;
+    overflow: hidden;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.favorite-card:hover {
+    transform: translateY(-5px);
+    border-color: #e10600;
+}
+
+.favorite-image {
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+    background: linear-gradient(180deg, #252530 0%, #1a1a24 100%);
+}
+
+.favorite-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+}
+
+.favorite-info {
+    padding: 20px;
+}
+
+.favorite-info h3 {
+    font-family: 'font-f1-bold-4', sans-serif;
+    color: #e10600;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.favorite-info p {
+    color: #cccccc;
+    margin: 5px 0;
+}
+
+.favorite-info strong {
+    color: #ffffff;
+}
+
+.team-icon-small {
+    height: 40px;
+    width: auto;
+    margin-bottom: 10px;
+}
+
+.favorite-remove-form {
+    margin-top: 10px;
+}
+
+.btn-remove {
+    width: 100%;
+    padding: 12px;
+    background: transparent;
+    color: #e10600;
+    border: 2px solid #e10600;
+    border-radius: 8px;
+    font-family: 'font-f1-bold-4', sans-serif;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-remove:hover {
+    background: #e10600;
+    color: #ffffff;
+    transform: translateY(-2px);
+}
+
+.no-favorites {
+    text-align: center;
+    padding: 40px;
+    font-size: 1.2rem;
+    color: #cccccc;
+    background: linear-gradient(145deg, #1a1a24 0%, #252530 100%);
+    border-radius: 15px;
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .nav-menu {
+        flex-direction: column;
+        gap: 0.5rem;
+        width: 100%;
+    }
+
+    .search-box {
+        width: 100%;
+    }
+
+    .search-box input {
+        width: 100%;
+        min-width: unset;
+    }
+
+    .favorites-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .f1-audio-container {
+        bottom: 10px;
+        right: 10px;
+        padding: 10px 15px;
+    }
+    
+    #f1-audio-player {
+        width: 200px;
+        height: 35px;
+    }
+    
+    .audio-label {
+        font-size: 0.75rem;
+    }
+}

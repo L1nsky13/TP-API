@@ -1,0 +1,122 @@
+{{define "index"}}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    <title>Formula 1 - Season {{.Data.season}}</title>
+    
+    
+    
+    <link rel="stylesheet" href="/static/header&footer.css">
+    
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    
+    <header>
+        <nav class="navbar">
+            
+            <div class="container">
+                <a href="/"><img src="/static/formula1-logo.webp" alt="Logo of Formula 1"></a>
+            </div>
+            
+            
+            <ul class="nav-menu">
+                <li><a href="/">Home</a></li>
+                <li><a href="/drivers">Drivers</a></li>
+                <li><a href="/teams">Teams</a></li>
+                <li><a href="/favorites">Favorites</a></li>
+                <li><a href="/about">About</a></li>
+            </ul>
+            
+            
+            <div class="search-box">
+                <form action="/search" method="GET">
+                    <input type="text" name="q" placeholder="Search..." required>
+                    <button type="submit">Search</button>
+                </form>
+            </div>
+        </nav>
+    </header>
+    
+    
+    
+    <div class="f1-audio-container">
+        <div class="f1-audio-player">
+            <div>
+                
+                <div class="audio-label">F1 - 2025 Opening Titles</div>
+                
+                <audio id="f1-audio-player" controls loop>
+                    <source src="/static/2025-F1-Opening-Titles.mp3">
+                </audio>
+            </div>
+        </div>
+    </div>
+    
+    
+    <section>
+        <div class="container">
+            
+            <h1>Welcome to the Formula 1 {{.Data.season}} Season</h1>
+            
+            
+            <p>Here you will find the Formula 1 teams for the {{.Data.season}} season and their drivers (race, test, and reserve).</p>
+            
+            
+            <div class="hero-buttons">
+                <a href="/drivers" class="btn btn-primary">View Drivers</a>
+                <a href="/teams" class="btn btn-secondary">View Teams</a>
+            </div>
+        </div>
+    </section>
+    
+    
+    <footer>
+        <div class="container">
+            
+            <div class="footer-content">
+                
+                <div class="footer-section">
+                    <h3>Formula 1 - Season {{.Data.season}}</h3>
+                    <p>Follow all Formula 1 drivers and teams</p>
+                </div>
+                
+                
+                <div class="footer-section">
+                    <h4>Navigation</h4>
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/drivers">Drivers</a></li>
+                        <li><a href="/teams">Teams</a></li>
+                        <li><a href="/favorites">Favorites</a></li>
+                    </ul>
+                </div>
+                
+                
+                <div class="footer-section">
+                    <h4>About</h4>
+                    <ul>
+                        <li><a href="/about">About the project</a></li>
+                        <li><a href="https://api.jolpi.ca/ergast/" target="_blank">API: Ergast F1 API</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Formula 1 - All rights reserved</p>
+            </div>
+        </div>
+    </footer>
+    
+    
+    <script src="/static/audio-persistence.js"></script>
+</body>
+</html>
+{{end}}

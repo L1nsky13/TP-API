@@ -1,0 +1,118 @@
+{{define "teams"}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{.Title}}</title>
+    <link rel="stylesheet" href="/static/header&footer.css">
+    <link rel="stylesheet" href="/static/teams.css">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <a href="/"><img src="/static/formula1-logo.webp" alt="Logo of Formula 1"></a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="/">Home</a></li>
+                <li><a href="/drivers">Drivers</a></li>
+                <li><a href="/teams">Teams</a></li>
+                <li><a href="/favorites">Favorites</a></li>
+                <li><a href="/about">About</a></li>
+            </ul>
+            <div class="search-box">
+                <form action="/search" method="GET">
+                    <input type="text" name="q" placeholder="Search..." required>
+                    <button type="submit">Search</button>
+                </form>
+            </div>
+        </nav>
+    </header>
+    
+    
+    <div class="f1-audio-container">
+        <div class="f1-audio-player">
+            <div>
+                <div class="audio-label">Don Toliver, Doja Cat - Lose My Mind (Instrumental)</div>
+                <audio id="f1-audio-player" controls loop autoplay>
+                    <source src="/static/Don Toliver, Doja Cat, Hans Zimmer - Lose My Mind (Instrumental) (From F1® The Movie).mp3" type="audio/mpeg">
+                </audio>
+            </div>
+        </div>
+    </div>
+    
+    <main>
+        <div class="container">
+            <div class="teams-header">
+                <h1>F1 TEAMS {{.Data.season}}</h1>
+                <p>Find the current Formula 1 teams for the {{.Data.season}} season</p>
+            </div>
+            
+            {{if .Data.constructors}}
+            <div class="teams-grid-f1">
+                {{range .Data.constructors}}
+                <a href="/teams/{{.ConstructorID}}" class="team-link">
+                    <div class="team-card-f1" style="--team-color: {{.TeamColor}};">
+                        <div class="team-card-header">
+                            <h2>{{.Name}}</h2>
+                            {{if .Icon}}
+                            <div class="team-logo">
+                                <img src="{{.Icon}}" alt="{{.Name}} logo">
+                            </div>
+                            {{end}}
+                        </div>
+                        
+                        {{if .Image}}
+                        <div class="team-car">
+                            <img src="{{.Image}}" alt="{{.Name}} car">
+                        </div>
+                        {{end}}
+                        
+                        <div class="team-info">
+                            <p><strong>Nationality:</strong> {{.Nationality}}</p>
+                        </div>
+                    </div>
+                </a>
+                {{end}}
+            </div>
+            {{else}}
+            <p class="no-data">No teams data available for this season.</p>
+            {{end}}
+        </div>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Formula 1 - Season {{.Data.season}}</h3>
+                    <p>Follow all Formula 1 drivers and teams</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Navigation</h4>
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/drivers">Drivers</a></li>
+                        <li><a href="/teams">Teams</a></li>
+                        <li><a href="/favorites">Favorites</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>About</h4>
+                    <ul>
+                        <li><a href="/about">About the project</a></li>
+                        <li><a href="https://api.jolpi.ca/ergast/" target="_blank">API: Ergast F1 API</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Formula 1 - All rights reserved</p>
+            </div>
+        </div>
+    </footer>
+    <script src="/static/audio-persistence.js"></script>
+</body>
+</html>
+{{end}}

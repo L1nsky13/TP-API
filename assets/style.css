@@ -1,0 +1,124 @@
+
+
+@font-face {
+    font-family: 'font-f1-black';
+    src: url('./Formula1-Black.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'font-f1-italic';
+    src: url('./Formula1-Italic.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'font-f1-bold_web';
+    src: url('./Formula1-Bold_web.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'font-f1-bold-4';
+    src: url('./Formula1-Bold-4.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'font-f1-Regular-1';
+    src: url('./Formula1-Regular-1.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'font-f1-Wide';
+    src: url('./Formula1-Wide.ttf') format('truetype');
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; 
+}
+
+body {
+    font-family: 'font-f1-Regular-1', Arial, sans-serif;
+    line-height: 1.6; 
+    color: #ffffff; 
+    background: linear-gradient(135deg, #15151E 0%, #303037 100%); 
+    min-height: 100vh; 
+}
+
+.container {
+    max-width: 1200px; 
+    margin: 0 auto; 
+    padding: 0 20px; 
+}
+
+section {
+    padding: 60px 0; 
+}
+
+section h1 {
+    font-family: 'font-f1-Wide', sans-serif; 
+    font-size: 3rem; 
+    margin-bottom: 20px;
+    background: #e10600; 
+    -webkit-background-clip: text; 
+    -webkit-text-fill-color: transparent; 
+    background-clip: text; 
+    text-align: center;
+}
+
+section p {
+    font-size: 1.2rem;
+    text-align: center;
+    margin-bottom: 40px;
+    color: #cccccc; 
+}
+
+.hero-buttons {
+    display: flex;
+    justify-content: center; 
+    gap: 20px; 
+    flex-wrap: wrap; 
+    margin-top: 40px;
+}
+
+.btn {
+    padding: 15px 40px; 
+    font-family: 'font-f1-bold-4', sans-serif; 
+    font-size: 1.1rem;
+    text-decoration: none; 
+    border-radius: 50px; 
+    transition: all 0.3s ease; 
+    display: inline-block;
+    border: 2px solid transparent;
+}
+
+.btn-primary {
+    background: #e10600; 
+    color: #ffffff; 
+}
+
+.btn-primary {
+    background: #e10600; 
+    color: #ffffff; 
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px); 
+}
+
+.btn-secondary {
+    background: transparent; 
+    color: #ffffff; 
+    border: 2px solid #e10600; 
+}
+
+.btn-secondary:hover {
+    background: #e10600; 
+    transform: translateY(-3px); 
+}
+
+@media (max-width: 768px) {
+    
+    section h1 {
+        font-size: 2rem; 
+    }
+}

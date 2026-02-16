@@ -1,0 +1,558 @@
+@font-face {
+    font-family: 'font-f1-black';
+    src: url('./Formula1-Black.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'font-f1-italic';
+    src: url('./Formula1-Italic.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'font-f1-bold_web';
+    src: url('./Formula1-Bold_web.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'font-f1-bold-4';
+    src: url('./Formula1-Bold-4.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'font-f1-Regular-1';
+    src: url('./Formula1-Regular-1.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'font-f1-Wide';
+    src: url('./Formula1-Wide.ttf') format('truetype');
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'font-f1-Regular-1', Arial, sans-serif;
+    line-height: 1.6;
+    color: #ffffff;
+    background: linear-gradient(135deg, #15151E 0%, #303037 100%);
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.team-hero,
+.team-card-bg {
+    background: var(--team-color, #15151E);
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+.nav-links a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: color 0.3s ease;
+    position: relative;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: #E10600;
+}
+
+.breadcrumb {
+    background-color: #15151E;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #2D2D39;
+}
+
+.back-link {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+}
+
+.back-link:hover {
+    color: #E10600;
+}
+
+.breadcrumb-tabs {
+    display: flex;
+    gap: 2rem;
+}
+
+.breadcrumb-tabs .tab {
+    color: #949498;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.breadcrumb-tabs .tab:hover,
+.breadcrumb-tabs .tab.active {
+    color: #ffffff;
+    border-bottom-color: #ffffff;
+}
+
+.hero {
+    position: relative;
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+}
+
+.hero-content {
+    position: relative;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+    text-align: center;
+}
+
+.car-container {
+    position: relative;
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto 2rem;
+    z-index: 2;
+}
+
+.team-car {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.5));
+}
+
+.stripes-container {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    transform: translateY(-50%);
+    z-index: 1;
+}
+
+.stripe {
+    position: relative;
+    height: 120px;
+    background: rgba(255, 255, 255, 0.15);
+    margin: 1rem 0;
+}
+
+.stripe::before,
+.stripe::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 30%;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.stripe::before {
+    left: 0;
+    clip-path: polygon(0 0, 100% 0, 80% 100%, 0 100%);
+}
+
+.stripe::after {
+    right: 0;
+    clip-path: polygon(20% 0, 100% 0, 100% 100%, 0 100%);
+}
+
+.team-name {
+    font-size: 7rem;
+    font-weight: 900;
+    letter-spacing: 0.1em;
+    color: #ffffff;
+    text-transform: uppercase;
+    margin: 1rem 0;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    position: relative;
+    z-index: 3;
+}
+
+.driver-names {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    margin: 1rem 0 2rem;
+    position: relative;
+    z-index: 3;
+}
+
+.driver-name {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #ffffff;
+    opacity: 1;
+}
+
+.team-logo-container {
+    margin: 2rem 0;
+    position: relative;
+    z-index: 3;
+}
+
+.team-logo-hero {
+    height: 64px;
+    width: auto;
+    filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.3));
+}
+
+.shop-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.875rem 2rem;
+    background-color: rgba(255, 255, 255, 0.15);
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 700;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    position: relative;
+    z-index: 3;
+}
+
+.shop-button:hover {
+    background-color: rgba(255, 255, 255, 0.25);
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: translateY(-2px);
+}
+
+.shop-icon {
+    width: 20px;
+    height: 20px;
+}
+
+.favorite-button-container {
+    margin-top: 2rem;
+    position: relative;
+    z-index: 3;
+}
+
+.btn-favorite {
+    padding: 15px 40px;
+    font-family: 'font-f1-bold-4', sans-serif;
+    font-size: 1.1rem;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid #ffffff;
+    background: transparent;
+    color: #ffffff;
+    display: inline-block;
+}
+
+.btn-favorite:hover {
+    background: #ffffff;
+    color: #e10600;
+    transform: translateY(-3px);
+}
+
+.btn-favorite.active {
+    background: #ffffff;
+    color: #e10600;
+    border-color: #ffffff;
+}
+
+.btn-favorite.active:hover {
+    background: #e10600;
+    color: #ffffff;
+    border-color: #e10600;
+}
+
+.drivers-section {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    font-weight: 900;
+    letter-spacing: 0.05em;
+    margin-bottom: 2rem;
+    color: #ffffff;
+}
+
+.drivers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+    gap: 2rem;
+}
+
+.driver-card {
+    text-decoration: none;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.driver-card:hover {
+    transform: translateY(-8px);
+}
+
+.driver-card-content {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    padding: 2rem;
+    min-height: 320px;
+    display: flex;
+    justify-content: space-between;
+    background-size: cover;
+    background-position: center;
+}
+
+.driver-info {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+}
+
+.driver-full-name {
+    font-size: 2.5rem;
+    font-weight: 900;
+    line-height: 1.1;
+    color: #ffffff;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+}
+
+.driver-team-name {
+    font-size: 0.9rem;
+    color: #ffffff;
+    margin-bottom: 0.5rem;
+}
+
+.driver-type {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.7);
+    font-style: italic;
+    margin-bottom: 2rem;
+}
+
+.driver-number {
+    font-size: 4rem;
+    font-weight: 900;
+    color: rgba(255, 255, 255, 0.3);
+    line-height: 1;
+    margin-top: auto;
+}
+
+.driver-flag .flag-emoji {
+    color: #ffffff;
+}
+
+.driver-flag {
+    margin-top: 1rem;
+}
+
+.driver-flag img {
+    width: 40px;
+    height: auto;
+    border-radius: 2px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.driver-image {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+}
+
+.driver-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: bottom right;
+}
+
+.statistics-section {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+    background-color: #1A1A24;
+}
+
+.stats-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 3rem;
+}
+
+.stats-column {
+    padding: 2rem;
+    background-color: #15151E;
+    border-radius: 8px;
+}
+
+.stats-subtitle {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: #E10600;
+    letter-spacing: 0.05em;
+}
+
+.stat-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+    border-bottom: 1px solid #2D2D39;
+}
+
+.stat-item:last-child {
+    border-bottom: none;
+}
+
+.stat-label {
+    font-size: 0.95rem;
+    color: #949498;
+}
+
+.stat-value {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.profile-section {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+}
+
+.profile-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+.profile-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1.5rem;
+    background-color: #1A1A24;
+    border-radius: 8px;
+}
+
+.profile-label {
+    font-size: 0.85rem;
+    color: #949498;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.profile-value {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.profile-description {
+    padding: 2rem;
+    background-color: #1A1A24;
+    border-radius: 8px;
+    line-height: 1.8;
+}
+
+.profile-description p {
+    color: #CCCCCC;
+    font-size: 1rem;
+}
+
+footer, footer * {
+    font-family: 'font-f1-Regular-1', Arial, sans-serif !important;
+}
+
+footer h3, footer h4 {
+    font-family: 'font-f1-bold-4', sans-serif !important;
+}
+
+.nav-menu li a.active {
+    background: transparent !important;
+}
+
+.nav-menu li a:hover {
+    background: #e10600;
+    color: #ffffff;
+}
+
+@media (max-width: 1024px) {
+    .team-name {
+        font-size: 5rem;
+    }
+    
+    .drivers-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+    }
+    
+    .breadcrumb {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: flex-start;
+    }
+    
+    .team-name {
+        font-size: 3rem;
+    }
+    
+    .driver-names {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .driver-full-name {
+        font-size: 2rem;
+    }
+    
+    .stats-container,
+    .profile-grid {
+        grid-template-columns: 1fr;
+    }
+}

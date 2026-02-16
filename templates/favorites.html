@@ -1,0 +1,154 @@
+{{define "favorites"}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{.Title}}</title>
+    <link rel="stylesheet" href="/static/header&footer.css">
+    <link rel="stylesheet" href="/static/favorites.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <a href="/"><img src="/static/formula1-logo.webp" alt="Logo of Formula 1"></a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="/">Home</a></li>
+                <li><a href="/drivers">Drivers</a></li>
+                <li><a href="/teams">Teams</a></li>
+                <li><a href="/favorites">Favorites</a></li>
+                <li><a href="/about">About</a></li>
+            </ul>
+            <div class="search-box">
+                <form action="/search" method="GET">
+                    <input type="text" name="q" placeholder="Search..." required>
+                    <button type="submit">Search</button>
+                </form>
+            </div>
+        </nav>
+    </header>
+
+    
+    <div class="f1-audio-container">
+        <div class="f1-audio-player">
+            <div>
+                <div class="audio-label">Tate McRae - Just Keep Watching (Instrumental)</div>
+                <audio id="f1-audio-player" controls loop>
+                    <source src="/static/Tate McRae - Just Keep Watching (Instrumental).mp3" type="audio/mpeg">
+                </audio>
+            </div>
+        </div>
+    </div>
+
+    <main>
+        <div class="container">
+            <div class="favorites-header">
+                <h1>MY FAVORITES</h1>
+                <p>Manage your favorite drivers and teams</p>
+            </div>
+
+            
+            <section class="favorites-section">
+                <h2>Favorite Drivers</h2>
+                {{if .Data.drivers}}
+                <div class="favorites-grid">
+                    {{range .Data.drivers}}
+                    <div class="favorite-item">
+                        <a href="/drivers/{{.DriverID}}" class="favorite-card">
+                            {{if .Image}}
+                            <div class="favorite-image">
+                                <img src="{{.Image}}" alt="{{.GivenName}} {{.FamilyName}}">
+                            </div>
+                            {{end}}
+                            <div class="favorite-info">
+                                <h3>{{.GivenName}} {{.FamilyName}}</h3>
+                                <p><strong>Team:</strong> {{.Team}}</p>
+                                <p><strong>Number:</strong> {{.PermanentNumber}}</p>
+                            </div>
+                        </a>
+                        <form action="/remove-favorite" method="POST" class="favorite-remove-form">
+                            <input type="hidden" name="type" value="driver">
+                            <input type="hidden" name="id" value="{{.DriverID}}">
+                            <input type="hidden" name="returnUrl" value="/favorites">
+                            <button type="submit" class="btn-remove">Remove</button>
+                        </form>
+                    </div>
+                    {{end}}
+                </div>
+                {{else}}
+                <p class="no-favorites">No favorite drivers yet. Start adding some!</p>
+                {{end}}
+            </section>
+
+            
+            <section class="favorites-section">
+                <h2>Favorite Teams</h2>
+                {{if .Data.constructors}}
+                <div class="favorites-grid">
+                    {{range .Data.constructors}}
+                    <div class="favorite-item">
+                        <a href="/teams/{{.ConstructorID}}" class="favorite-card team-card">
+                            {{if .Image}}
+                            <div class="favorite-image">
+                                <img src="{{.Image}}" alt="{{.Name}} car">
+                            </div>
+                            {{end}}
+                            <div class="favorite-info">
+                                {{if .Icon}}
+                                <img src="{{.Icon}}" alt="{{.Name}} logo" class="team-icon-small">
+                                {{end}}
+                                <h3>{{.Name}}</h3>
+                                <p><strong>Nationality:</strong> {{.Nationality}}</p>
+                            </div>
+                        </a>
+                        <form action="/remove-favorite" method="POST" class="favorite-remove-form">
+                            <input type="hidden" name="type" value="constructor">
+                            <input type="hidden" name="id" value="{{.ConstructorID}}">
+                            <input type="hidden" name="returnUrl" value="/favorites">
+                            <button type="submit" class="btn-remove">Remove</button>
+                        </form>
+                    </div>
+                    {{end}}
+                </div>
+                {{else}}
+                <p class="no-favorites">No favorite teams yet. Start adding some!</p>
+                {{end}}
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Formula 1 - Season {{.Data.season}}</h3>
+                    <p>Follow all Formula 1 drivers and teams</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Navigation</h4>
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/drivers">Drivers</a></li>
+                        <li><a href="/teams">Teams</a></li>
+                        <li><a href="/favorites">Favorites</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>About</h4>
+                    <ul>
+                        <li><a href="/about">About the project</a></li>
+                        <li><a href="https://api.jolpi.ca/ergast/" target="_blank">API: Ergast F1 API</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Formula 1 - All rights reserved</p>
+            </div>
+        </div>
+    </footer>
+    <script src="/static/audio-persistence.js"></script>
+</body>
+</html>
+{{end}}

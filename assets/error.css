@@ -1,0 +1,131 @@
+@font-face {
+    font-family: 'font-f1-black';
+    src: url('./Formula1-Black.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'font-f1-italic';
+    src: url('./Formula1-Italic.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'font-f1-bold_web';
+    src: url('./Formula1-Bold_web.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'font-f1-bold-4';
+    src: url('./Formula1-Bold-4.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'font-f1-Regular-1';
+    src: url('./Formula1-Regular-1.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'font-f1-Wide';
+    src: url('./Formula1-Wide.ttf') format('truetype');
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'font-f1-Regular-1', Arial, sans-serif;
+    line-height: 1.6;
+    color: #ffffff;
+    background: linear-gradient(135deg, #15151E 0%, #303037 100%);
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+section {
+    padding: 60px 0;
+}
+
+.error-container {
+    text-align: center;
+    padding: 100px 20px;
+    min-height: 60vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.error-code {
+    font-family: 'font-f1-Wide', sans-serif;
+    font-size: 8rem;
+    color: #e10600;
+    margin-bottom: 20px;
+    line-height: 1;
+}
+
+.error-container h1 {
+    font-family: 'font-f1-Wide', sans-serif;
+    font-size: 3rem;
+    color: #ffffff;
+    margin-bottom: 20px;
+}
+
+.error-message {
+    font-size: 1.3rem;
+    margin-bottom: 40px;
+    color: #cccccc;
+    max-width: 600px;
+}
+
+.error-actions {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btn-home {
+    background: #e10600;
+    color: #ffffff;
+    padding: 12px 30px;
+    text-decoration: none;
+    border-radius: 25px;
+    font-family: 'font-f1-bold-4', sans-serif;
+    transition: all 0.3s ease;
+}
+
+.btn-home:hover {
+    background: #e10600;
+    transform: translateY(-2px);
+}
+
+.btn-back {
+    padding: 15px 40px;
+    font-family: 'font-f1-bold-4', sans-serif;
+    font-size: 1.1rem;
+    text-decoration: none;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    display: inline-block;
+    background: transparent;
+    color: #ffffff;
+    border: 2px solid #e10600;
+}
+
+.btn-back:hover {
+    background: #e10600;
+    transform: translateY(-3px);
+}
+
+@media (max-width: 768px) {
+    .error-container h1 {
+        font-size: 2rem;
+    }
+}
